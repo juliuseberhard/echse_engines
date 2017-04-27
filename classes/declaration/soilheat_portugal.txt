@@ -1,0 +1,23 @@
+type	name
+
+inputExt	doy
+inputExt	hour
+inputExt	lai
+inputExt	rad_net
+inputExt	utc_add
+
+inputSim	dummy
+
+paramNum	elev
+paramNum	lat
+paramNum	lon
+
+sharedParamNum	choice_et
+sharedParamNum	choice_gloradmax
+sharedParamNum	ext
+sharedParamNum	f_day
+sharedParamNum	f_night
+sharedParamNum	radex_a
+sharedParamNum	radex_b
+
+output	soilheat_out

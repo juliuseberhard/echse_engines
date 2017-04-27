@@ -1,0 +1,90 @@
+type	name
+
+# state variable longrad to compute long-wave radiation over nighttime
+stateScal	s_longrad
+
+# Parameters and variables needed specifically for actual ET
+inputExt	wc_vol_top
+inputExt	wc_vol_root
+paramNum	wc_sat
+paramNum	wc_pwp
+paramNum	wc_res
+paramNum	wc_etmax
+paramNum	bubble
+paramNum	pores_ind
+paramNum	wstressmin
+paramNum	wstressmax
+paramNum	par_stressHum
+
+# Common meteorological variables
+inputExt	temper
+inputExt	temp_min
+inputExt	temp_max
+inputExt	glorad
+inputExt	rhum
+inputExt	wind
+inputExt	apress
+inputExt	sundur
+inputExt	cloud
+
+# Common site-secific parameters (usually paramNum)
+paramNum	lat
+paramNum	lon
+paramNum	elev
+
+# Specific meteorological quantities (commonly calculated internally but can also be given as input)
+inputExt	radex
+inputExt	glorad_max
+inputExt	rad_net
+inputExt	rad_net_soil
+inputExt	rad_long
+inputExt	soilheat
+inputExt	totalheat
+
+# Meteorological parameters (usually sharedParamNum)
+sharedParamNum	h_tempMeas
+sharedParamNum	h_humMeas
+sharedParamNum	h_windMeas
+sharedParamNum	emis_a
+sharedParamNum	emis_b
+sharedParamNum	fcorr_a
+sharedParamNum	fcorr_b
+sharedParamNum	radex_a
+sharedParamNum	radex_b
+sharedParamNum	f_day
+sharedParamNum	f_night
+
+# Vegetation and land-cover parameters and variables (parameters or external input)
+paramNum	crop_makk
+paramNum	crop_faoref
+inputExt	cano_height
+inputExt	lai
+inputExt	alb
+sharedParamNum	ext
+paramNum	res_leaf_min
+paramNum	soil_dens
+paramNum	glo_half
+sharedParamNum	res_b
+sharedParamNum	drag_coef
+sharedParamNum	rough_bare
+sharedParamNum	eddy_decay
+sharedParamNum	rss_a
+sharedParamNum	rss_b
+
+# Computational parameters
+inputSim	dummy
+inputExt	doy
+inputExt	hour
+inputExt	utc_add
+sharedParamNum	na_val
+
+# Choice flags
+sharedParamNum	choice_et
+sharedParamNum	choice_rcs
+sharedParamNum	choice_roughLen
+sharedParamNum	choice_plantDispl
+sharedParamNum	choice_gloradmax
+
+# Output
+output	etp
+output	eta

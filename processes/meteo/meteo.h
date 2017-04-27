@@ -747,7 +747,7 @@ double net_rad (
 ////////////////////////////////////////////////////////////////////////////////
 
 double soil_heatflux (
-	const double net_rad,		// Downward net (long- and short-wave) radiation (Wm-2)
+	const double net_rad,		// Downward net (long- and short-wave) radiation (Wm-2) at soil surface!
 	const double f_day,			// Fraction of net_rad over daytime (in case of sub-daily application) (-)
 	const double f_night,		// Fraction of net_rad over nighttime (in case of sub-daily application) (-)
 	const int daynight,			// flag: 1: calculation for day time; 0: calculation for night time
@@ -774,4 +774,3 @@ double soil_heatflux (
 
 
 #endif
-

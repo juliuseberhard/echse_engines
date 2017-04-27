@@ -1,0 +1,27 @@
+type	name
+
+stateScal	s_glorad_max
+
+inputExt	alb
+inputExt	doy
+inputExt	glorad
+inputExt	hour
+inputExt	rhum
+inputExt	temper
+inputExt	utc_add
+
+inputSim	dummy
+
+paramNum	elev
+paramNum	lat
+paramNum	lon
+
+sharedParamNum	choice_gloradmax
+sharedParamNum	emis_a
+sharedParamNum	emis_b
+sharedParamNum	fcorr_a
+sharedParamNum	fcorr_b
+sharedParamNum	radex_a
+sharedParamNum	radex_b
+
+output	rad_net_out

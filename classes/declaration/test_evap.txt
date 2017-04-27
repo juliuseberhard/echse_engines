@@ -1,0 +1,90 @@
+type	name	description	unit
+
+# state variable longrad to compute long-wave radiation (specifically the cloudiness correction factor) over nighttime (assume persistenz of last daytime value)
+stateScal	s_longrad	State of long-wave radiation	W/m2
+
+# Parameters and variables needed specifically for actual ET
+inputExt	wc_vol_top	Actual volumetric soil water content at topmost horizon	m3/m3
+inputExt	wc_vol_root	Actual volumetric soil water content of the root zone	m3/m3
+paramNum	wc_sat	Volumetric water content at saturation of the root zone	m3/m3
+paramNum	wc_pwp	Volumetric water content of the root zone at permanent wilting point	m3/m3
+paramNum	wc_res	Residual volumetric water content of the root zone	m3/m3
+paramNum	wc_etmax	Parameter giving the volumetric water content where et_act equals et_pot, typically wc_etmax / wc_fk = [0.5..0.8]	m3/m3
+paramNum	bubble	Bubbling pressure of the root zone	cm of water or hPa
+paramNum	pores_ind	Pore-size-index of the root zone	dimensionless
+paramNum	wstressmin	Threshold for water stress effect on resistance (begin of stomata closure)	cm of water or hPa
+paramNum	wstressmax	Threshold for water stress effect on resistance (total stomata closure, wilting point)	cm of water or hPa
+paramNum	par_stressHum	Parameter to calculate water vapour deficit stomatal conductance stress factor - in WASA a value of 0.03	1/hPa
+
+# Common meteorological variables
+inputExt	temper	Air temperature	°C
+inputExt	temp_min	Minimum temperature within time step	°C
+inputExt	temp_max	Maximum temperature within time step	°C
+inputExt	glorad	Downward short-wave radiation	W/m2
+inputExt	rhum	Relative humidity	%
+inputExt	wind	Wind speed	m/s
+inputExt	apress	Air pressure	hPa
+inputExt	sundur	Sunshine duration of current day	hours
+inputExt	cloud	Cloudiness	percent
+
+# Common site-secific parameters (usually paramNum)
+paramNum	lat	Latitude of location	decimal degrees
+paramNum	lon	Longitude of location	decimal degrees west of Greenwhich, e.g. Greenwich: 0°, New York: 75°, Berlin: 345°
+paramNum	elev	Elevation above sea level	m
+
+# Specific meteorological quantities (commonly calculated internally but can also be given as input)
+inputExt	radex	Incoming radiation at top of atmosphere	W/m2
+inputExt	glorad_max	Maximum downward short-wave radiation	W/m2
+inputExt	rad_net	Net incoming (short-wave + long-wave) radiation	W/m2
+inputExt	rad_net_soil	Net incoming (short-wave + long-wave) radiation hitting the soil surface	W/m2
+inputExt	rad_long	Net incoming long-wave radiation	W/m2
+inputExt	soilheat	Soil heat flux	W/m2
+inputExt	totalheat	Heat conduction into soil AND plants due to physical and biochemical energy storage	W/m2
+
+# Meteorological parameters (usually sharedParamNum)
+sharedParamNum	h_tempMeas	Height of temperature measurement over ground	m
+sharedParamNum	h_humMeas	Height of relative humidity measurement over ground	m
+sharedParamNum	h_windMeas	Height of wind speed measurement over ground	m
+sharedParamNum	emis_a	Coefficient a for calculation of net emissivity (empirical; between 0.34 and 0.44; for average conditions 0.34 following Maidment, 1993)	dimensionless
+sharedParamNum	emis_b	Coefficient b for calculation of net emissivity (empirical; between -0.14 and -0.25; for average conditions -0.14 following Maidment, 1993)	dimensionless
+sharedParamNum	fcorr_a	Coefficient a for calculation of cloudiness correction factor (empirical; humid areas: 1.00, arid areas: 1.35, Maidment, 1993)	dimensionless
+sharedParamNum	fcorr_b	Coefficient b for calculation of cloudiness correction factor (empirical; humid areas: 0.00, arid areas: -0.35, Maidment, 1993)	dimensionless
+sharedParamNum	radex_a	Angstrom coefficient (share of radex on glorad under clouds; empirical; recommended for average climates: 0.25, , Maidment, 1993)	dimensionless
+sharedParamNum	radex_b	Angstrom coefficient (radex_a+radex_b = share of radex on glorad under clear sky; empirical; recommended for average climates: 0.50, , Maidment, 1993)	dimensionless
+sharedParamNum	f_day	Soil heat flux calculation: Fraction of net_rad over daytime (in case of sub-daily application)	-
+sharedParamNum	f_night	Soil heat flux calculation: Fraction of net_rad over nighttime (in case of sub-daily application)	-
+
+# Vegetation and land-cover parameters and variables (parameters or external input)
+paramNum	crop_makk	Crop-factor for calculation of pot. evapotransp. after Makkink	dimensionless
+paramNum	crop_faoref	Crop-factor for FAO reference approach	dimensionless
+inputExt	cano_height	Height of canopy (optional)	m
+inputExt	lai	Leaf area index	m2/m2
+inputExt	alb	Albedo	dimensionless
+sharedParamNum	ext	Canopy extinction coefficient, Beer's law (typically between 0.3 and 0.7)	dimensionless
+paramNum	res_leaf_min	Plant-specific minimum (i.e. no stress occurs) stomatal resistance of a single leaf	sm-1
+paramNum	soil_dens	Bulk density of top horizon of soil (where evaporation occurs)	kg/m3
+paramNum	glo_half	Solar radiation at which stomatal conductance is half of its maximum (species-specific)	W/m2
+sharedParamNum	res_b	Mean boundary layer resistance (in Shuttleworth and Wallace a value of 25)	s/m
+sharedParamNum	drag_coef	Effective value of mean drag coef. of vegetative elements (in Shuttleworth and Gurney a value of 0.07)	dimensionless
+sharedParamNum	rough_bare	Roughness length of bare substrate (in Shuttlewort & Wallace a value of 0.01)	m
+sharedParamNum	eddy_decay	Eddy diffusivity decay constant (in Shuttlewort & Wallace set to 2.5 for agricultural crops)	dimensionless
+sharedParamNum	rss_a	Empirical constant for calculation of soil surface resistance as developed by Domingo et al. (1999) (in WASA set to 26)	dimensionless
+sharedParamNum	rss_b	Empirical constant for calculation of soil surface resistance as developed by Domingo et al. (1999) (in WASA set to -1)	dimensionless
+
+# Computational parameters
+inputSim	dummy	dummy variable, not used	none
+inputExt	doy	Current day of the year (julian day)	dimensionless
+inputExt	hour	Hour of day in local time (including daylight daving time), range of [0..23]	hour of day
+inputExt	utc_add	Deviation of local time zone from UTC; may vary over the year due to daylight saving time; range of [-12..14]	hours
+sharedParamNum	na_val	All input and parameters of this specific numeric value will be treated as 'not available'	dimensionless
+
+# Choice flags
+sharedParamNum	choice_et	Flag indicating which method for calculation of evapotransp. to use (see documentation)	dimensionless
+sharedParamNum	choice_rcs	Canopy stomatal resistance by up-scaling of single leaf resistance, 1: Shuttlewort & Wallace (1985) eq. 19, 2: Saugier and Katerji (1991) eq. 4 used in WASA	dimensionless
+sharedParamNum	choice_roughLen	Roughness length for momentum transfer, 1: SWAT manual (2011) eqs. 2:2.2.4, 2:2.2.5, 2: Shuttleworth & Gurney (1990) eq. 43	dimensionless
+sharedParamNum	choice_plantDispl	Displacement heigt for a plant, 1: SWAT manual (2011) eq. 2:2.2.7, 2: Shuttleworth & Gurney (1990) eq. 42	dimensionless
+sharedParamNum	choice_gloradmax	Calculation method of glorad_max	dimensionless
+
+# Output
+output	etp	Potential evapotranspiration	mm
+output	eta	Actual evapotranspiration	mm

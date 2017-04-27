@@ -1,0 +1,14 @@
+type	name
+
+inputExt	cloud
+inputExt	doy
+inputExt	sundur
+
+inputSim	dummy
+
+paramNum	lat
+
+sharedParamNum	radex_a
+sharedParamNum	radex_b
+
+output	glorad_out

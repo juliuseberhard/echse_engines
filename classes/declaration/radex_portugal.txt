@@ -1,0 +1,12 @@
+type	name
+
+inputExt	doy
+inputExt	hour
+inputExt	utc_add
+
+inputSim	dummy
+
+paramNum	lat
+paramNum	lon
+
+output	radex_out
