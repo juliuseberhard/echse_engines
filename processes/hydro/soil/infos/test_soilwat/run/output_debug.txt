@@ -1,7 +1,0 @@
-
-# Objects for which debug info is to be printed
-
-object
-
-test1
-
