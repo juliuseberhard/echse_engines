@@ -1,2 +1,2 @@
-type	name	description	unit
-output	dummy	dummy	dummy
+type	name
+output	dummy
